@@ -18,7 +18,7 @@ class LocalIdSelectionThread : public QThread
 
 public:
     explicit LocalIdSelectionThread(QObject *a_parent = Q_NULLPTR);
-    ~LocalIdSelectionThread();
+    ~LocalIdSelectionThread() override;
 
     void setSocketName(const QString &a_socketName);
     void run() Q_DECL_OVERRIDE;
