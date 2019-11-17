@@ -1,11 +1,11 @@
 ## \brief     A Qt based GUI for the TLS Pool
 ## \author    Aschwin Marsman
 ## \date      2016
-## \copyright Copyright 2016, Aschwin Marsman, the ARPA2 project
+## \copyright Copyright 2016-2019, Aschwin Marsman, the ARPA2 project
 ## \license   SPDX-License-Identifier: GPL-2.0
 
 ## Require a minimum version of CMake
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.3.0)
 
 ## Application name
 set(APP_NAME "tlspool-gui")
@@ -18,16 +18,17 @@ SET(CMAKE_BUILD_TYPE Debug)
 
 ## \todo check should be for g++ or clang.
 if (APPLE)
-	set(COMPILE_FLAGS "-Weverything -Wno-padded")
+	set(COMPILE_FLAGS "-Weverything -Wno-padded -Wno-c++98-compat")
 else()
-        set(COMPILE_FLAGS "-Wall -Wextra -std=c++11 -Wshadow -Wold-style-cast -Wfloat-equal -Woverloaded-virtual -Wundef -DDEBUG")
+        set(COMPILE_FLAGS "-Wall -Wextra -Wshadow -Wold-style-cast -Wfloat-equal -Woverloaded-virtual -Wundef -DDEBUG")
 endif ()
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${COMPILE_FLAGS}")
 
-#set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ## Include (or not) the full compiler output
-set(CMAKE_VERBOSE_MAKEFILE OFF)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Find the Qt libraries
 find_package(Qt5Svg REQUIRED)
@@ -48,6 +49,8 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
+
+set(CMAKE_AUTOMOC_OPTIONS )
 
 # Instruct CMake to run ccc automatically when needed.
 set(CMAKE_AUTORCC ON)
