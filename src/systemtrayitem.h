@@ -39,7 +39,7 @@ private slots:
     void localIdentityTriggered(QAction *a_action);
 
 protected:
-    bool event(QEvent *e);
+    bool event(QEvent *a_event);
 
 private:
     QSystemTrayIcon *m_systemTrayIcon;

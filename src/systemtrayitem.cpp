@@ -83,7 +83,6 @@ void SystemTrayItem::iconActivated(QSystemTrayIcon::ActivationReason a_reason)
 void SystemTrayItem::showLocalIdentityMenu()
 {
     qDebug() << "> SystemTrayItem::showLocalIdentityMenu()";
-    QAction *localIdentityAction;
 
     m_localIdentityMenu = new QMenu();
     connect(m_localIdentityMenu, &QMenu::triggered, this, &SystemTrayItem::localIdentityTriggered);
@@ -94,8 +93,9 @@ void SystemTrayItem::showLocalIdentityMenu()
     m_localIdentityMenu->addSeparator();
 
     qDebug() << "m_defaultLocalIdentity:" << m_defaultLocalIdentity;
+
     for (int i = 0; i < m_localIdentityList.size(); ++i) {
-        localIdentityAction = new QAction(m_localIdentityList.at(i), m_localIdentityMenu);
+        QAction *localIdentityAction = new QAction(m_localIdentityList.at(i), m_localIdentityMenu);
         localIdentityAction->setData(i);
         qDebug() << i << m_localIdentityList.at(i);
         if (m_defaultLocalIdentity == m_localIdentityList.at(i)) {
@@ -182,5 +182,4 @@ bool SystemTrayItem::event(QEvent *a_event)
 {
     qDebug() << "> SystemTrayItem::event(" << a_event << ")";
     return QObject::event(a_event);
-    qDebug() << "< SystemTrayItem::event()";
 }
