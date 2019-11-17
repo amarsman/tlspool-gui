@@ -18,7 +18,7 @@ class PinEntryThread : public QThread
 
 public:
     explicit PinEntryThread(QObject *a_parent = Q_NULLPTR);
-    ~PinEntryThread();
+    ~PinEntryThread() override;
 
     void setSocketName(const QString &a_socketName);
     void run() Q_DECL_OVERRIDE;
